@@ -1,0 +1,160 @@
+﻿@model DictionaryApiApp.Models.WordInfo
+<div class="text-center">
+    <h1 class="display-4">Vocabulary</h1>
+    <p>words info</a>.</p>
+    @await Html.PartialAsync("InputWord", new InputWord() { Word = "" })
+
+    <section>
+        <div id="carouselExampleCaptions" class="carousel slide">
+            <div class="carousel-indicators">
+                <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+                <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="1" aria-label="Slide 2"></button>
+                <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="2" aria-label="Slide 3"></button>
+                <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="3" aria-label="Slide 4"></button>
+            </div>
+            @if (Model != null)
+            {
+                <div class="carousel-inner">
+
+                    <div class="carousel-item active">
+                        <table class="table">
+                            @foreach (var wordInfoElement in Model.WordInfoElements.Take(1))
+                            {
+                                @foreach (var meaning in wordInfoElement.Meanings)
+                                {
+                                    <thead>
+                                        <tr>
+                                            <th>
+                                                @Html.DisplayNameFor(wordInfoElements => wordInfoElement.Meanings)
+                                            </th>
+                                            <th></th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>
+                                                @foreach (var defItem in meaning.Definitions)
+                                                {
+                                                    @Html.DisplayFor(modelItem => defItem.Definition)
+                                                }
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                    <thead>
+                                        <tr>
+                                            <th>
+                                                @Html.DisplayNameFor(element => wordInfoElement.Phonetic)
+                                            </th>
+                                            <th></th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>
+                                                @Html.DisplayFor(element => wordInfoElement.Phonetic)
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                    <thead>
+                                        <tr>
+                                            <th>
+                                                @Html.DisplayNameFor(element => wordInfoElement.Meanings.FirstOrDefault().Definitions.FirstOrDefault().Example)
+                                            </th>
+                                            <th></th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @foreach (var item in wordInfoElement.Meanings)
+                                        {
+                                            <tr>
+                                                <td>
+                                                    @foreach (var defItem in item.Definitions)
+                                                    {
+                                                        @Html.DisplayFor(modelItem => defItem.Example)
+                                                    }
+                                                </td>
+                                            </tr>
+                                        }
+                                    </tbody>
+                                }
+                            }
+                        </table>
+                    </div>
+
+                    <div class="carousel-item">
+                        <table class="table">
+                            @foreach (var wordInfoElement in Model.WordInfoElements.Skip(1))
+                            {
+                                @foreach (var meaning in wordInfoElement.Meanings)
+                                {
+                                    <thead>
+                                        <tr>
+                                            <th>
+                                                @Html.DisplayNameFor(wordInfoElements => wordInfoElement.Meanings)
+                                            </th>
+                                            <th></th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>
+                                                @foreach (var defItem in meaning.Definitions)
+                                                {
+                                                    @Html.DisplayFor(modelItem => defItem.Definition)
+                                                }
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                    <thead>
+                                        <tr>
+                                            <th>
+                                                @Html.DisplayNameFor(element => wordInfoElement.Phonetic)
+                                            </th>
+                                            <th></th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>
+                                                @Html.DisplayFor(element => wordInfoElement.Phonetic)
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                    <thead>
+                                        <tr>
+                                            <th>
+                                                @Html.DisplayNameFor(element => wordInfoElement.Meanings.FirstOrDefault().Definitions.FirstOrDefault().Example)
+                                            </th>
+                                            <th></th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @foreach (var item in wordInfoElement.Meanings)
+                                        {
+                                            <tr>
+                                                <td>
+                                                    @foreach (var defItem in item.Definitions)
+                                                    {
+                                                        @Html.DisplayFor(modelItem => defItem.Example)
+                                                    }
+                                                </td>
+                                            </tr>
+                                        }
+                                    </tbody>
+                                }
+                            }
+                        </table>
+                    </div>
+                </div>
+            }
+            <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Previous</span>
+            </button>
+            <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Next</span>
+            </button>
+        </div>
+    </section>
+</div>
